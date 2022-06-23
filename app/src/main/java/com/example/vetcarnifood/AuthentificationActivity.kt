@@ -35,7 +35,7 @@ class AuthentificationActivity : AppCompatActivity(R.layout.activity_authentific
     }
 
     private fun redirectToMain() {
-        val intent = Intent(this@AuthentificationActivity, MainActivity::class.java)
+        val intent = Intent(this@AuthentificationActivity, BarcodeActivity::class.java)
         startActivity(intent)
         finish()
     }

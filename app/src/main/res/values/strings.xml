@@ -24,4 +24,5 @@
         <item>Appartement</item>
         <item>Maison</item>
     </string-array>
+    <string name="scanLoad">En cours de détection</string>
 </resources>
