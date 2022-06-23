@@ -1,4 +1,4 @@
-package com.example.vetcarnifood.data
+package com.example.vetcarnifood.auth.data
 
 /**
  * A generic class that holds a value with its loading status.

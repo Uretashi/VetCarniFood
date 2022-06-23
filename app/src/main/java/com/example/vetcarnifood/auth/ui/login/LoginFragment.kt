@@ -1,7 +1,6 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -12,17 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.vetcarnifood.databinding.FragmentLoginBinding
-
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.vetcarnifood.R
+import com.example.vetcarnifood.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
     private var _binding: FragmentLoginBinding? = null
+
+    private val _isConnected = MutableLiveData<LoginViewModel>()
+    val isConnected: LiveData<LoginViewModel> = _isConnected
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -41,8 +42,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+        val loginViewModel: LoginViewModel by activityViewModels()
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
@@ -71,7 +71,7 @@ class LoginFragment : Fragment() {
                     showLoginFailed(it)
                 }
                 loginResult.success?.let {
-                    updateUiWithUser(it)
+                    updateUiWithUser(it, loginViewModel)
                 }
             })
 
@@ -112,16 +112,21 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
+    private fun updateUiWithUser(model: LoggedInUserView, loginViewModel: LoginViewModel) {
+        val logMessage = "Bienvenue " + model.displayName + " !"
         // TODO : initiate successful logged in experience
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+        Toast.makeText(appContext, logMessage, Toast.LENGTH_LONG).show()
+        loginViewModel.setIsConnected()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+    }
+
+    fun getRegisterButton(): Button? {
+        return view?.findViewById(R.id.register_btn)
     }
 
     override fun onDestroyView() {

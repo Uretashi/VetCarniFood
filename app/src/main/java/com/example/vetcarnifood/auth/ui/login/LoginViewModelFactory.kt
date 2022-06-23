@@ -1,9 +1,9 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.vetcarnifood.data.LoginDataSource
-import com.example.vetcarnifood.data.LoginRepository
+import com.example.vetcarnifood.auth.data.LoginDataSource
+import com.example.vetcarnifood.auth.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
