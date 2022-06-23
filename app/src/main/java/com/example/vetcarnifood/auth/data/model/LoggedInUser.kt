@@ -1,4 +1,4 @@
-package com.example.vetcarnifood.data.model
+package com.example.vetcarnifood.auth.data.model
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

@@ -1,4 +1,4 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
 /**
  * Data validation state of the login form.

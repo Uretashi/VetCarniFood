@@ -1,4 +1,4 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
 /**
  * Authentication result : success (user details) or error message.
