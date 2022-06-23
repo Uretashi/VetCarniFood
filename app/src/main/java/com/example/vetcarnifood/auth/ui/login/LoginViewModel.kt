@@ -1,10 +1,9 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.*
-import com.example.vetcarnifood.data.LoginRepository
-import com.example.vetcarnifood.data.Result
+import com.example.vetcarnifood.auth.data.LoginRepository
+import com.example.vetcarnifood.auth.data.Result
 
 import com.example.vetcarnifood.R
 

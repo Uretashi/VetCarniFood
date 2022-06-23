@@ -1,8 +1,6 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
-import android.content.Intent
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -13,18 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.vetcarnifood.MainActivity
-import com.example.vetcarnifood.databinding.FragmentLoginBinding
-
 import com.example.vetcarnifood.R
+import com.example.vetcarnifood.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
@@ -131,6 +123,10 @@ class LoginFragment : Fragment() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+    }
+
+    fun getRegisterButton(): Button? {
+        return view?.findViewById(R.id.register_btn)
     }
 
     override fun onDestroyView() {

@@ -1,4 +1,4 @@
-package com.example.vetcarnifood.ui.login
+package com.example.vetcarnifood.auth.ui.login
 
 /**
  * User details post authentication that is exposed to the UI

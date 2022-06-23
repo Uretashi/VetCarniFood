@@ -1,6 +1,6 @@
-package com.example.vetcarnifood.data
+package com.example.vetcarnifood.auth.data
 
-import com.example.vetcarnifood.data.model.LoggedInUser
+import com.example.vetcarnifood.auth.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

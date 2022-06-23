@@ -4,15 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import com.example.vetcarnifood.ui.login.LoginViewModel
-import java.util.*
-import kotlin.concurrent.schedule
-import androidx.lifecycle.Observer
+import com.example.vetcarnifood.auth.ui.login.LoginViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.vetcarnifood.ui.login.LoginViewModelFactory
+import com.example.vetcarnifood.auth.ui.login.LoginFragment
+import com.example.vetcarnifood.auth.ui.login.LoginViewModelFactory
+import com.example.vetcarnifood.auth.ui.login.RegisterFragment
 
 class AuthentificationActivity : AppCompatActivity(R.layout.activity_authentification) {
 
@@ -27,11 +23,20 @@ class AuthentificationActivity : AppCompatActivity(R.layout.activity_authentific
         }
     }
 
-    private fun redirectToMain() {
-        Timer("goingTo", false).schedule(1000) {
-            val intent = Intent(this@AuthentificationActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        val loginFragment = supportFragmentManager.findFragmentById(R.id.login_container)
+        if(loginFragment is LoginFragment) {
+            loginFragment.getRegisterButton()?.setOnClickListener {
+                val fragmentManager = supportFragmentManager.beginTransaction()
+                fragmentManager.replace(R.id.login_container, RegisterFragment.newInstance()).commit()
+            }
         }
+    }
+
+    private fun redirectToMain() {
+        val intent = Intent(this@AuthentificationActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
